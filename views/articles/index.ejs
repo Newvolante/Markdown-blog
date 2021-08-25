@@ -1,0 +1,37 @@
+<!-- This is the index view for the ROOT -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Blog</title>
+</head>
+<body>
+    <!-- main container -->
+    <div class="container">
+        <h1 class="mb-4">Blog articles</h1>
+        <!-- new article button -->
+        <a href="/articles/new" class="btn btn-success">New article</a>
+
+        <!-- code executed for each article (iterating) -->
+        <% articles.forEach(article => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <!-- article title -->
+                    <h4 class="card-title"><%= article.title %></h4>
+                    <!-- article time -->
+                    <div class="card-subtitle text-muted mb-2"><%= article.createdAt.toLocaleDateString() %></div>
+                    <!-- article description (body) -->
+                    <div class="card-text mb-2"><%= article.description %></div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
