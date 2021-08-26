@@ -2,10 +2,27 @@
   a PARTIAL VIEW, in this case used by the edit and new view -->
 
 <!-- Form to fill up -->
+<!-- title -->
 <div class="form-group">
   <label for="title">Title</label>
   <input required type="text" name="title" id="title" class="form-control">
 </div>
 
+<!-- description -->
+<div class="form-group">
+  <label for="description">Description</label>
+  <textarea name="description" id="description" class="form-control"></textarea>
+</div>
+
+<!-- markdown -->
+<div class="form-group">
+  <label for="markdown">Markdown</label>
+  <textarea name="markdown" id="markdown" class="form-control"></textarea>
+</div>
+
+<!-- back button -->
+<a href="/" class="btn btn-secondary">Back</a>
+
 <!-- Save button -->
+<!-- calls router.post in articles.ejs -->
 <button type="submit" class="btn btn-primary">Save</button>
