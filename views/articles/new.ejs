@@ -22,7 +22,11 @@
 
       <!-- calls router.post from the articles.js route -->
       <form action="/articles" method="POST">
-        
+
+        <!-- including fixed html code, in this case a form -->
+        <!-- rendering html from the _form_fields view -->
+        <!-- the hyphen does the magic trick -->
+        <%- include('_form_fields') %>
       </form>
 
     </div>
