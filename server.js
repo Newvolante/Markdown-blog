@@ -1,7 +1,15 @@
 const express = require('express');
+// requiring the mongoose library (database)
+const mongoose = require('mongoose');
 const articleRouter = require('./routes/articles');
 const app = express();
 const PORT = 5000;
+
+// connecting to local mongodb database
+mongoose.connect('mongodb://localhost/blog', { 
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+ });
 
 // setting the view engine
 app.set('view engine', 'ejs'); // writing views in ejs
