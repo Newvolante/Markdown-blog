@@ -7,4 +7,9 @@ router.get('/new', (req, res) => {
   res.render('articles/new');
 })
 
+// called when submitting the form for a new article from the new.ejs view
+router.post('/', (req, res) => {
+
+});
+
 module.exports = router;
