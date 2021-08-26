@@ -19,5 +19,5 @@ const articleSchema = new mongoose.Schema({
   }
 });
 
-// in this case Article is the collection containing all the documents
+// in this case Article is the schema of the collection of documents
 module.exports = mongoose.model('Article', articleSchema);
