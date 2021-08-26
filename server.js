@@ -7,8 +7,8 @@ const PORT = 5000;
 
 // connecting to local mongodb database
 mongoose.connect('mongodb://localhost/blog', { 
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+  useNewUrlParser: true,      // following deprecation warnings
+  useUnifiedTopology: true    // following deprecation warnings
  });
 
 // setting the view engine
