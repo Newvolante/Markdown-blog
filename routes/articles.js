@@ -1,4 +1,6 @@
 const express = require('express');
+// importing the model for the mongoDB database
+const Article = require('./../models/article');
 const router = express.Router();
 
 // manages /articles/new
