@@ -5,13 +5,13 @@
 <!-- title -->
 <div class="form-group">
   <label for="title">Title</label>
-  <input required type="text" name="title" id="title" class="form-control">
+  <input required value="<%= article.title %>" type="text" name="title" id="title" class="form-control">
 </div>
 
 <!-- description -->
 <div class="form-group">
   <label for="description">Description</label>
-  <textarea name="description" id="description" class="form-control"></textarea>
+  <textarea name="description" id="description" class="form-control"><%= article.description %></textarea>
 </div>
 
 <!-- markdown -->
