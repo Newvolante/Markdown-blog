@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
 // called when submitting the form for a new article from the new.ejs view
 router.post('/', async (req, res) => {  // this is an asynchronous request
   // creating a new article
-  const article = new Article ({
+  let article = new Article ({
     // req.body.___ works thanks to using
     // app.use(express.urlencoded( {extended: false })); in server.js
     title: req.body.title,
@@ -38,6 +38,7 @@ router.post('/', async (req, res) => {  // this is an asynchronous request
   } catch(e) {
     // in case of error, prefilling _form_fields.ejs
     // with info entered previously
+    console.log(e);
     res.render('articles/new', { article: article });
   }
   
