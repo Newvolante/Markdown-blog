@@ -9,6 +9,8 @@ router.get('/new', (req, res) => {
   // 2 - passing a new article as a property makes it work when
   // 2 - you exit the filled new article page without sending it
   // 2 - and you go back to it
+  // 3 - the second parameter passes in a new blank article every
+  // 3 - time the "new" route is requested
   res.render('articles/new', { article: new Article() });
 })
 
