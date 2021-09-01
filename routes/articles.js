@@ -17,7 +17,7 @@ router.get('/new', (req, res) => {
 // whenever requesting ./articles/"something"
 // and it's not ./articles/new
 router.get('/:id', (req, res) => {
-
+  res.send(req.params.id);
 });
 
 // called when submitting the form for a new article from the new.ejs view
