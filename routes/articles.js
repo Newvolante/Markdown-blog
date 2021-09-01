@@ -14,10 +14,13 @@ router.get('/new', (req, res) => {
   res.render('articles/new', { article: new Article() });
 })
 
-// whenever requesting ./articles/"something"
-// and it's not ./articles/new
-router.get('/:id', (req, res) => {
-  res.send(req.params.id);
+// 1 - whenever requesting ./articles/"something"
+// 1 - and it's not ./articles/new
+// 2 - showing the requested blog article
+router.get('/:id', async (req, res) => {
+  const article = await Article.findById(req.params.id);
+  if (article == null) res.redirect('/');   // if no article with such id is found
+  res.render('articles/show', {article: article });
 });
 
 // called when submitting the form for a new article from the new.ejs view
