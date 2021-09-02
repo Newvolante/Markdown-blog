@@ -27,7 +27,9 @@ app.use(express.urlencoded({
 // root route
 app.get('/', async (req, res, next) => {
   //rendering the articles in the database
-  const articles = await Article.find();
+  const articles = await Article
+    .find()
+    .sort({ createdAt: "desc"});   // sorting in descending order
 
   // rendering the root view ('index.ejs') from the views folder
   // passing an obj to show all the articles
