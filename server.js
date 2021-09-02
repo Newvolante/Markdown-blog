@@ -1,6 +1,8 @@
 const express = require('express');
 // requiring the mongoose library (database)
 const mongoose = require('mongoose');
+//importing the schema of the mongo database
+const Article = require('./models/article');
 const articleRouter = require('./routes/articles');
 const app = express();
 const PORT = 5000;
@@ -23,25 +25,9 @@ app.use(express.urlencoded({
 
 
 // root route
-app.get('/', (req, res, next) => {
+app.get('/', async (req, res, next) => {
 
-  // obj containing all the articles
-  const articles = [{
-      title: 'Test article',
-      createdAt: new Date(),
-      description: 'Test description'
-    },
-    {
-      title: 'Test article 2',
-      createdAt: new Date(),
-      description: 'Test description 2'
-    },
-    {
-      title: 'Test article 3',
-      createdAt: new Date(),
-      description: 'Test description 3'
-    }
-  ];
+  const articles = await Article.find();
 
   // rendering the root view ('index.ejs') from the views folder
   // passing an obj to show all the articles
