@@ -26,7 +26,7 @@ app.use(express.urlencoded({
 
 // root route
 app.get('/', async (req, res, next) => {
-
+  //rendering the articles in the database
   const articles = await Article.find();
 
   // rendering the root view ('index.ejs') from the views folder
