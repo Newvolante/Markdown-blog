@@ -25,6 +25,10 @@
       <a href="/" class="btn btn-secondary">All articles</a>
       <!-- edit button -->
       <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+      <!-- markdown -->
+      <div>
+        <%= article.markdown %>
+      </div>
     </div>
   </body>
 </html>
