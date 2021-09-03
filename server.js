@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 //importing the schema of the mongo database
 const Article = require('./models/article');
 const articleRouter = require('./routes/articles');
+const methodOverride = require('method-override');
 const app = express();
 const PORT = 5000;
 
@@ -24,6 +25,8 @@ app.use(express.urlencoded({
   extended: false
 }));
 
+// allows to use other methods with forms other than GET and POST
+app.use(methodOverride('_method'));
 
 // root route
 app.get('/', async (req, res, next) => {
