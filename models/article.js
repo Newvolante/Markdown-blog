@@ -1,4 +1,8 @@
 const mongoose = require('mongoose');
+// compiler for parsing markdown without caching or blocking for long periods of time
+const marked = require('marked');
+// generates user friendly URL's
+const slugify = require('slugify');
 
 // all the columns of the articles
 const articleSchema = new mongoose.Schema({
