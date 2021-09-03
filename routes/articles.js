@@ -17,8 +17,10 @@ router.get('/new', (req, res) => {
 // 1 - whenever requesting ./articles/"something"
 // 1 - and it's not ./articles/new
 // 2 - showing the requested blog article
-router.get('/:id', async (req, res) => {
-  const article = await Article.findById(req.params.id);
+router.get('/:slug', async (req, res) => {
+  const article = await Article.findOne({
+    slug: req.params.slug
+  });
   if (article == null) res.redirect('/');   // if no article with such id is found
   res.render('articles/show', {article: article });
 });
@@ -39,7 +41,7 @@ router.post('/', async (req, res) => {  // this is an asynchronous request
     // with the new saved article
     article = await article.save(); // this is returning an id
     // redirecting the user to the new article
-    res.redirect(`/articles/${article.id}`)
+    res.redirect(`/articles/${article.slug}`)
   } catch(e) {
     // in case of error, prefilling _form_fields.ejs
     // with info entered previously

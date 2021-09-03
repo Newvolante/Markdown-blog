@@ -20,8 +20,26 @@ const articleSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now   // no parentheses - called whenever we create a document
+  },
+  slug: {
+    type: String,
+    required: true,
+    unique: true
   }
 });
+
+// runs everytime we call the database
+articleSchema.pre('validate', function(next) {
+  if(this.title) {
+    this.slug = slugify(this.title, {
+      // setting the slug to lowercase
+      lower: true,
+      // gets rid of characters not fitting in the url
+      strict: true
+    })
+  }
+  next();
+})
 
 // in this case Article is the schema of the collection of documents
 module.exports = mongoose.model('Article', articleSchema);
