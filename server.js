@@ -11,7 +11,7 @@ const PORT = 5000;
 mongoose.connect('mongodb://localhost/blog', {
   useNewUrlParser: true, // following deprecation warnings
   useUnifiedTopology: true, // following deprecation warnings
-  useCreateIndex: true
+  useCreateIndex: true // following deprecation warnings
 });
 
 // setting the view engine
@@ -20,7 +20,7 @@ app.set('view engine', 'ejs'); // writing views in ejs
 
 // telling express how to access the fields in the _form_fields view
 // used to create and edit articles
-app.use(express.urlencoded({
+app.use(express.urlencoded({ 
   extended: false
 }));
 
