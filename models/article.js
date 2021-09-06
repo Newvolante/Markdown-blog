@@ -3,6 +3,12 @@ const mongoose = require('mongoose');
 const marked = require('marked');
 // generates user friendly URL's
 const slugify = require('slugify');
+// library to sanitize HTML (so it can't run JS code)
+const createDomPurify = require ('dompurify');
+// renders HTML into node.js
+const { JSDOM } = require('jsdom');
+// creates HTML and purifies it
+const dompurify = createDomPurify(new JSDOM().window);
 
 // all the columns of the articles
 const articleSchema = new mongoose.Schema({
@@ -25,6 +31,11 @@ const articleSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  sanitizedHtml: {
+    type: String,
+    required: true,
+    unique: true
   }
 });
 
@@ -38,6 +49,13 @@ articleSchema.pre('validate', function(next) {
       strict: true
     })
   }
+
+  if (this.markdown) {
+    // dompurify.sanitize() sanitizes the html from the markdown
+    // marked() converts markdown to sanitized html
+    this.sanitizedHtml = dompurify.sanitize(marked(this.markdown));
+  }
+
   next();
 })
 
