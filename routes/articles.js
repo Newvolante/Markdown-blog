@@ -52,7 +52,8 @@ router.post('/', async (req, res) => {  // this is an asynchronous request
 });
 
 // to delete articles from the database
-router.delete(':/id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
+  
   //deleting the matching article
   await Article.findByIdAndDelete(req.params.id);
   // redirecting to the root
