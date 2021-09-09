@@ -1,0 +1,36 @@
+<!-- This is the EDIT view -->
+
+<!-- This is the index view for the ROOT -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+  <title>Blog</title>
+</head>
+
+  <body>
+    <!-- form to make a new article -->
+    <div class="container">
+      <h1 class="mb-4">Edit article</h1>
+
+      <!-- calls router.post from the articles.js route -->
+      <form action="/articles/<%= article.id %>?_method=PUT" method="POST">
+
+        <!-- including fixed html code, in this case a form -->
+        <!-- rendering html from the _form_fields view -->
+        <!-- the hyphen does the magic trick -->
+        <%- include('_form_fields') %>
+      </form>
+
+    </div>
+  </body>
+</html>
