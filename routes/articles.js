@@ -34,29 +34,14 @@ router.get('/:slug', async (req, res) => {
 });
 
 // called when submitting the form for a new article from the new.ejs view
-router.post('/', async (req, res) => {  // this is an asynchronous request
-  // creating a new article
-  let article = new Article ({
-    // req.body.___ works thanks to using
-    // app.use(express.urlencoded( {extended: false })); in server.js
-    title: req.body.title,
-    description: req.body.description,
-    markdown: req.body.markdown
-  });
-  // saves the article to the database
-  try {
-    // if successfull, updating the article var
-    // with the new saved article
-    article = await article.save(); // this is returning an id
-    // redirecting the user to the new article
-    res.redirect(`/articles/${article.slug}`)
-  } catch(e) {
-    // in case of error, prefilling _form_fields.ejs
-    // with info entered previously
-    console.log(e);
-    res.render('articles/new', { article: article });
-  }
-  
+router.post('/', async (req, res, next) => {  // this is an asynchronous request
+  req.article = new Article();
+  // next() allows to call saveArticleAndRedirect()
+  next();
+}, saveArticleAndRedirect('new'));
+
+router.put('/:id', (req, res) => {
+
 });
 
 // to delete articles from the database
@@ -67,5 +52,28 @@ router.delete('/:id', async (req, res) => {
   // redirecting to the root
   res.redirect('/');
 });
+
+function saveArticleAndRedirect(path) {
+  return async (req, res) => {
+    let article = req.article;
+    // req.body.___ works thanks to using
+    // app.use(express.urlencoded( {extended: false })); in server.js
+    article.title = req.body.title;
+    article.description = req.body.description;
+    article.markdown = req.body.markdown;
+    // saves the article to the database
+    try {
+      // if successfull, updating the article var
+      // with the new saved article
+      article = await article.save(); // this is returning an id
+      // redirecting the user to the new article
+      res.redirect(`/articles/${article.slug}`)
+    } catch(e) {
+      // in case of error, prefilling _form_fields.ejs
+      // with info entered previously
+      res.render(`articles/${path}`, { article: article });
+    }
+  }
+}
 
 module.exports = router;
