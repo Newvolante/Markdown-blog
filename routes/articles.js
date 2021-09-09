@@ -16,7 +16,9 @@ router.get('/new', (req, res) => {
 
 // edit route
 router.get('/edit/:id', async (req, res) => {
+  // retrieving the article
   const article = await Article.findById(req.params.id);
+  // rendering the edit view
   res.render('articles/edit', { article: article });
 })
 
