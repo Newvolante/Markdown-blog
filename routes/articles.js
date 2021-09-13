@@ -40,9 +40,12 @@ router.post('/', async (req, res, next) => {  // this is an asynchronous request
   next();
 }, saveArticleAndRedirect('new'));
 
-router.put('/:id', (req, res) => {
-
-});
+// called when editing an article
+router.put('/:id', async (req, res, next) => {  // this is an asynchronous request
+  req.article = await Article.findById(req.params.id);
+  // next() allows to call saveArticleAndRedirect()
+  next();
+}, saveArticleAndRedirect('edit'));
 
 // to delete articles from the database
 router.delete('/:id', async (req, res) => {
